@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-2">
+    <div class="grid grid-2 gap-8">
         <div>
             <nuxt-link :to="'/releases/'+releaseItem.id">
                 <img
@@ -10,36 +10,33 @@
                 />
             </nuxt-link>
         </div>
-        <div>
+        <div class="cont-release">
             <h5 class="d-release">{{releaseItem.year}}</h5>
-            <h3 class="a-release">
+            <div class="a-release">
                 <span v-for="(artist, index) in releaseItem.artists" :key="index">
                     <span v-if="releaseItem.artists.length != 1">
                         <span v-if="index != releaseItem.artists.length - 1">
-                            <nuxt-link style="color: #fff" :to="artist.key">{{artist.name}},</nuxt-link>
+                            <nuxt-link class="link-release" :to="artist.key">{{artist.name}}</nuxt-link>,
                         </span>
                         <span v-else>
-                            <nuxt-link style="color: #fff" :to="artist.key">{{artist.name}}</nuxt-link>
+                            <nuxt-link class="link-release" :to="artist.key">{{artist.name}}</nuxt-link>
                         </span>
                     </span>
                     <span v-else>
-                        <nuxt-link style="color: #fff" :to="artist.key">{{artist.name}}</nuxt-link>
+                        <nuxt-link class="link-release" :to="artist.key">{{artist.name}}</nuxt-link>
                     </span>
                 </span>
-            </h3>
-            <a :href="releaseItem.url" target="_blank">
-                <h1 class="t-release">{{releaseItem.name}}</h1>
-                <br />
-            </a>
+            </div>
+            <nuxt-link :to="'/releases/'+releaseItem.id">
+                <h1 v-if="releaseItem.name.length < 21 " class="t-release">{{releaseItem.name}}</h1>
+                <h1 v-else class="t-release" v-text="releaseItem.name.slice(0,20) + '...'"></h1>
+            </nuxt-link>
             <p class="r-btn">
-                <span v-for="(service, index) in releaseItem.services" :key="index">
+                <span v-for="(service, index) in releaseItem.services.slice(0,4)" :key="index">
                     <a :href="service.url" target="_blank" title="Disponible en Spotify">
                         <i :class="'fab fa-'+ service.name"></i>
                     </a>
                 </span>
-                <a :href="releaseItem.url" target="_blank" title="Mas Plataformas">
-                    <i class="fas fa-plus-circle"></i>
-                </a>
             </p>
         </div>
     </div>
@@ -51,8 +48,10 @@ export default {
 };
 </script>
 <style>
+.portadas_main {
+    border-radius: 2%;
+}
 .d-release {
-    padding-top: 20px;
     font-size: 0.8rem;
     letter-spacing: 5px;
     color: rgba(255, 255, 255, 0.5);
@@ -64,6 +63,15 @@ export default {
 }
 .t-release {
     font-size: 1.6rem;
+    margin: 0;
+}
+.cont-release {
+    position: relative;
+}
+.r-btn {
+    position: absolute;
+    bottom: 0.3rem;
+    margin: 0;
 }
 .r-btn i {
     letter-spacing: 0.5rem;
@@ -73,6 +81,12 @@ export default {
 }
 .r-btn i:hover {
     color: #fff;
+}
+.link-release {
+    color: #fff !important;
+}
+.link-release:hover {
+    text-decoration: underline;
 }
 .afont {
     font-size: 1.2rem !important;

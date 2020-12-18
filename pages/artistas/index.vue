@@ -1,24 +1,23 @@
 <template>
     <div class="x-center container">
-        <h1 class="x-mt-2">ARTISTAS</h1>
-        <div class="grid grid-1 md:grid-2 lg:grid-4 gap-10">
+        <h1 class="py text-center" style="--py: 25px">ARTISTAS</h1>
+        <div class="grid grid-2 md:grid-3 lg:grid-6 gap-10">
             <div v-for="(artista, index) of artistas" :key="index">
-                <router-link :to="artista.key">
-                    <img class="artistas_main" v-bind:src="artista.image" />
-                </router-link>
-                <p>
-                    <router-link :to="artista.key" class="xf-2 xf-blanco">{{artista.name}}</router-link>
+                <nuxt-link :to="artista.key">
+                    <img class="artist-img" v-bind:src="artista.image" />
+                </nuxt-link>
+                <p class="text-center">
+                    <nuxt-link :to="artista.key" class="artist-name">{{artista.name}}</nuxt-link>
                 </p>
             </div>
         </div>
     </div>
 </template>
+
 <script>
 import axios from "axios";
-var urlDataXpend = "https://cdn.xpendmusic.com/api/artists/";
 
 export default {
-    name: "Musica",
     created: function () {
         this.getData();
     },
@@ -35,9 +34,11 @@ export default {
     },
     methods: {
         getData: function () {
-            axios.get(urlDataXpend).then((response) => {
-                this.artistas = response.data;
-            });
+            axios
+                .get("https://cdn.xpendmusic.com/api/artists/")
+                .then((response) => {
+                    this.artistas = response.data;
+                });
         },
     },
     head() {
@@ -49,16 +50,19 @@ export default {
                     name: "description",
                     content: this.site.descripcion,
                 },
+                { property: "og:description", content: this.site.descripcion },
                 { property: "og:title", content: this.site.titulo },
                 { property: "og:image", content: this.site.img },
-                { property: "og:description", content: this.site.descripcion },
-                { name: "twitter:card", content: "summary" },
-                { name: "twitter:title", content: this.site.titulo },
-                { name: "twitter:site", content: "@xpendmusic" },
-                { name: "twitter:description", content: this.site.descripcion },
                 { name: "twitter:image", content: this.site.img },
+                { name: "twitter:card", content: "summary" },
+                { name: "twitter:site", content: "@xpendmusic" },
             ],
         };
     },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "~/assets/styles/main.scss";
+@import "~/assets/styles/pages/artistas/index.scss";
+</style>

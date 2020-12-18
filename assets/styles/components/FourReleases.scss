@@ -1,0 +1,15 @@
+.releases-links_btn {
+    i {
+        color: rgba(#ffffff, 0.5);
+        transition: 0.1s;
+        &:hover{
+            color: #ffffff;
+        }
+    }
+    margin: 0 10px;
+}
+.releases-links {
+    height: 40px;
+    padding: 0;
+    margin: 0;
+}

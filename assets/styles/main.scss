@@ -1,0 +1,50 @@
+$xpend-primary: #7d62ff; //#943fff
+$xpend-bg: #131416;
+$xpend-bg-2: lighten(#131416, 3%);
+$xpend-color: #ffffff;
+$xpend-color-negro: #000;
+$xpend-titulo: #ffffff;
+$xpend-bg-3: #0f0f11;
+$xpend-50: 50%;
+$xpend-nav-title: #ffffff;
+
+$link-color: #947eff;
+$primary-color: #7d62ff;
+$secondary-color: rgb(94, 21, 112);
+$primary-bg: #131416;
+$secondary-bg: lighten(#131416, 3%);
+$default-color: #ffffff;
+
+$color-500: #17202a;
+$color-400: #1b2631;
+$color-300: #2d3237;
+$color-200: #35393d;
+$color-100: #5c5c5c;
+
+$screen-sm: 0em;
+$screen-md: 40em;
+$screen-lg: 64em;
+$screen-xl: 90em;
+
+$breakpoints: (
+  md: $screen-md,
+  lg: $screen-lg,
+  xl: $screen-xl
+);
+
+@mixin md {
+    @media only screen and (min-width: $screen-md) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media only screen and (min-width: $screen-lg) {
+        @content;
+    }
+}
+@mixin xl {
+    @media only screen and (min-width: $screen-xl) {
+        @content;
+    }
+}

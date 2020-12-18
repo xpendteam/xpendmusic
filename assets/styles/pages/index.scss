@@ -1,0 +1,39 @@
+.youtube-container {
+    transition: 0.2s;
+    padding: 10px;
+    border-radius: 5px;
+}
+.youtube-video-img {
+    fill: transparent;
+    border-radius: 5px;
+    background: $secondary-bg;
+    animation: skeleton 1s infinite ease-in alternate;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media only screen and (min-width: 768px) {
+    .youtube-container:hover {
+        background: $secondary-bg;
+    }
+}
+@keyframes skeleton {
+    0% {
+        background: $secondary-bg;
+    }
+    40%,
+    100% {
+        background: darken($secondary-bg, 20%);
+    }
+}
+#sessions {
+    padding: 1rem 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background: $secondary-bg;
+    transition: 0.2s;
+    @include md {
+        padding: 1.5rem 4rem;
+    }
+}

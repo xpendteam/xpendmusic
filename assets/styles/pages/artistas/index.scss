@@ -1,0 +1,10 @@
+.artist-img{
+    border-radius: 50%;
+    transition: 0.2s;
+    &:hover{
+        opacity: 75%;
+    }
+}
+.artist-name{
+    color: #ffffff;
+}
